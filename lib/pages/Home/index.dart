@@ -4,6 +4,7 @@ import 'package:shop_demo/components/Home/Category.dart';
 import 'package:shop_demo/components/Home/GoodsList.dart';
 import 'package:shop_demo/components/Home/HotPicks.dart';
 import 'package:shop_demo/components/Home/Recommend.dart';
+import 'package:shop_demo/types/home.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key? key}) : super(key: key);
@@ -13,13 +14,32 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  // 轮播图数据
+  final List<BannerItem> _bannerList = [
+    BannerItem(
+      id: "1",
+      imgUrl:
+          "https://s1.xiaomiev.com/activity-outer-assets/0328/images/yu7_20260521/pc/1.jpg",
+    ),
+    BannerItem(
+      id: "2",
+      imgUrl:
+          "https://s1.xiaomiev.com/activity-outer-assets/0328/images/yu7_20260521/pc/3.jpg",
+    ),
+    BannerItem(
+      id: "3",
+      imgUrl:
+          "https://s1.xiaomiev.com/activity-outer-assets/0328/images/yu7_20260521/pc/5.jpg",
+    ),
+  ];
+
   List<Widget> _getSlivers() {
     return [
       // 轮播图组件
-      SliverToBoxAdapter(child: Carousel()),
+      SliverToBoxAdapter(child: Carousel(bannerList: _bannerList)),
       // 设置间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
-      // 分类列表组件
+      // 分类列表组件，SliverList、SliverGrid只能纵向滚动，不能横向滚动
       SliverToBoxAdapter(child: Category()),
       // 设置间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),

@@ -63,7 +63,9 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // SafeArea组件用于避免内容被状态栏遮挡
       body: SafeArea(
+        // IndexedStack组件用于根据索引显示不同的子组件
         child: IndexedStack(
           index: _currentIndex,
           children: [HomeView(), CategoryView(), CartView(), MineView()],
