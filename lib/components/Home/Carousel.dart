@@ -103,7 +103,11 @@ class _CarouselState extends State<Carousel> {
         children: List.generate(widget.bannerList.length, (int index) {
           return GestureDetector(
             onTap: () {
-              _carouselController.jumpToPage(index);
+              _carouselController.animateToPage(
+                index,
+                duration: Duration(milliseconds: 500),
+                curve: Curves.fastEaseInToSlowEaseOut,
+              );
             },
             child: AnimatedContainer(
               duration: Duration(milliseconds: 500),
