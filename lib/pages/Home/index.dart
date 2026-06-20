@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_demo/api/home.dart';
 import 'package:shop_demo/components/Home/Carousel.dart';
 import 'package:shop_demo/components/Home/Category.dart';
 import 'package:shop_demo/components/Home/GoodsList.dart';
@@ -15,23 +16,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   // 轮播图数据
-  final List<BannerItem> _bannerList = [
-    BannerItem(
-      id: "1",
-      imgUrl:
-          "https://s1.xiaomiev.com/activity-outer-assets/0328/images/yu7_20260521/pc/1.jpg",
-    ),
-    BannerItem(
-      id: "2",
-      imgUrl:
-          "https://s1.xiaomiev.com/activity-outer-assets/0328/images/yu7_20260521/pc/3.jpg",
-    ),
-    BannerItem(
-      id: "3",
-      imgUrl:
-          "https://s1.xiaomiev.com/activity-outer-assets/0328/images/yu7_20260521/pc/5.jpg",
-    ),
-  ];
+  List<BannerItem> _bannerList = [];
 
   List<Widget> _getSlivers() {
     return [
@@ -67,6 +52,21 @@ class _HomeViewState extends State<HomeView> {
       // 商品列表组件
       Goodslist(),
     ];
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    // 获取轮播图数据
+    getBannerList();
+  }
+
+  void getBannerList() async {
+    _bannerList = await getBannerListApi();
+    print(_bannerList);
+    setState(() {});
   }
 
   @override

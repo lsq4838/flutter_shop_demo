@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   carousel_slider: ^5.1.2
   debounce_throttle: ^2.0.0
+  dio: ^5.9.2
 
 dev_dependencies:
   flutter_test:
