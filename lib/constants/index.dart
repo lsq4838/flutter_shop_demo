@@ -7,5 +7,8 @@ class GlobalConstants {
 
 // 请求地址常量
 class RequestConstants {
+  // 轮播图
   static const String bannerUrl = "/home/banner";
+  // 分类列表
+  static const String categoryUrl = "/home/category/head";
 }

@@ -17,6 +17,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   // 轮播图数据
   List<BannerItem> _bannerList = [];
+  // 分类列表数据
+  List<CategoryItem> _categoryList = [];
 
   List<Widget> _getSlivers() {
     return [
@@ -25,7 +27,7 @@ class _HomeViewState extends State<HomeView> {
       // 设置间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 分类列表组件，SliverList、SliverGrid只能纵向滚动，不能横向滚动
-      SliverToBoxAdapter(child: Category()),
+      SliverToBoxAdapter(child: Category(categoryList: _categoryList)),
       // 设置间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 推荐组件
@@ -61,11 +63,19 @@ class _HomeViewState extends State<HomeView> {
 
     // 获取轮播图数据
     getBannerList();
+    // 获取分类列表数据
+    getCategoryList();
   }
 
+  // 获取轮播图数据
   void getBannerList() async {
     _bannerList = await getBannerListApi();
-    print(_bannerList);
+    setState(() {});
+  }
+
+  // 获取分类列表数据
+  void getCategoryList() async {
+    _categoryList = await getCategoryListApi();
     setState(() {});
   }
 
