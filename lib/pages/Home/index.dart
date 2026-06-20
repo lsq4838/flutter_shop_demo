@@ -19,6 +19,12 @@ class _HomeViewState extends State<HomeView> {
   List<BannerItem> _bannerList = [];
   // 分类列表数据
   List<CategoryItem> _categoryList = [];
+  // 特惠推荐数据
+  SpecialRecommendResult _specialRecommendResult = SpecialRecommendResult(
+    id: "",
+    title: "",
+    subTypes: [],
+  );
 
   List<Widget> _getSlivers() {
     return [
@@ -31,7 +37,9 @@ class _HomeViewState extends State<HomeView> {
       // 设置间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 推荐组件
-      SliverToBoxAdapter(child: Recommend()),
+      SliverToBoxAdapter(
+        child: Recommend(specialRecommendResult: _specialRecommendResult),
+      ),
       // 设置间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 爆款推荐组件
@@ -65,6 +73,8 @@ class _HomeViewState extends State<HomeView> {
     getBannerList();
     // 获取分类列表数据
     getCategoryList();
+    // 获取特惠推荐数据
+    getSpecialRecommendList();
   }
 
   // 获取轮播图数据
@@ -76,6 +86,12 @@ class _HomeViewState extends State<HomeView> {
   // 获取分类列表数据
   void getCategoryList() async {
     _categoryList = await getCategoryListApi();
+    setState(() {});
+  }
+
+  // 获取特惠推荐数据
+  void getSpecialRecommendList() async {
+    _specialRecommendResult = await getSpecialRecommendListApi();
     setState(() {});
   }
 

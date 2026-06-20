@@ -11,4 +11,6 @@ class RequestConstants {
   static const String bannerUrl = "/home/banner";
   // 分类列表
   static const String categoryUrl = "/home/category/head";
+  // 特惠推荐
+  static const String specialUrl = "/hot/preference";
 }
