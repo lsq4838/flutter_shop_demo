@@ -40,7 +40,7 @@ class _GoodslistState extends State<Goodslist> {
               widget.recommendList[index].name,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.black, fontSize: 20),
+              style: TextStyle(color: Colors.black, fontSize: 14),
             ),
           ),
           SizedBox(height: 6),
@@ -54,7 +54,7 @@ class _GoodslistState extends State<Goodslist> {
                     text: "¥${widget.recommendList[index].price}",
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 20,
+                      fontSize: 14,
                       fontWeight: FontWeight.w800,
                     ),
                     children: [
@@ -72,7 +72,7 @@ class _GoodslistState extends State<Goodslist> {
                 ),
                 Text(
                   "${widget.recommendList[index].payCount}人付款",
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: Colors.grey, fontSize: 12),
                 ),
               ],
             ),
