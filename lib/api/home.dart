@@ -26,3 +26,17 @@ Future<SpecialRecommendResult> getSpecialRecommendListApi() async {
     await dioRequest.get(RequestConstants.specialUrl),
   );
 }
+
+// 爆款推荐
+Future<SpecialRecommendResult> getRecommendListApi() async {
+  return SpecialRecommendResult.fromJson(
+    await dioRequest.get(RequestConstants.recommendUrl),
+  );
+}
+
+// 一站买全
+Future<SpecialRecommendResult> getOneStopListApi() async {
+  return SpecialRecommendResult.fromJson(
+    await dioRequest.get(RequestConstants.oneStopUrl),
+  );
+}

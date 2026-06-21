@@ -46,7 +46,7 @@ class GoodsItem {
   String id;
   String name;
   String? desc;
-  double price;
+  String price;
   String picture;
   int orderNum;
   GoodsItem({
@@ -63,7 +63,7 @@ class GoodsItem {
       id: json["id"] ?? "",
       name: json["name"] ?? "",
       desc: json["desc"] ?? "",
-      price: json["price"] ?? 0.0,
+      price: json["price"] ?? "",
       picture: json["picture"] ?? "",
       orderNum: json["orderNum"] ?? 0,
     );

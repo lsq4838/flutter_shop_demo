@@ -25,6 +25,18 @@ class _HomeViewState extends State<HomeView> {
     title: "",
     subTypes: [],
   );
+  // 爆款推荐数据
+  SpecialRecommendResult _recommendResult = SpecialRecommendResult(
+    id: "",
+    title: "",
+    subTypes: [],
+  );
+  // 一站买全数据
+  SpecialRecommendResult _oneStopResult = SpecialRecommendResult(
+    id: "",
+    title: "",
+    subTypes: [],
+  );
 
   List<Widget> _getSlivers() {
     return [
@@ -50,9 +62,9 @@ class _HomeViewState extends State<HomeView> {
             direction: Axis.horizontal,
             children: [
               // Expanded组件用于平均分配空间
-              Expanded(child: Hotpicks()),
+              Expanded(child: Hotpicks(result: _recommendResult)),
               SizedBox(width: 10),
-              Expanded(child: Hotpicks()),
+              Expanded(child: Hotpicks(result: _oneStopResult)),
             ],
           ),
         ),
@@ -75,6 +87,10 @@ class _HomeViewState extends State<HomeView> {
     getCategoryList();
     // 获取特惠推荐数据
     getSpecialRecommendList();
+    // 获取爆款推荐数据
+    getRecommendList();
+    // 获取一站买全数据
+    getOneStopList();
   }
 
   // 获取轮播图数据
@@ -92,6 +108,18 @@ class _HomeViewState extends State<HomeView> {
   // 获取特惠推荐数据
   void getSpecialRecommendList() async {
     _specialRecommendResult = await getSpecialRecommendListApi();
+    setState(() {});
+  }
+
+  // 获取爆款推荐数据
+  void getRecommendList() async {
+    _recommendResult = await getRecommendListApi();
+    setState(() {});
+  }
+
+  // 获取一站买全数据
+  void getOneStopList() async {
+    _oneStopResult = await getOneStopListApi();
     setState(() {});
   }
 

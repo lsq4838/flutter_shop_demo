@@ -81,7 +81,8 @@ class _RecommendState extends State<Recommend> {
           SizedBox(height: 5),
           Container(
             width: 100,
-            height: 20,
+            // height: 20,
+            alignment: Alignment.center,
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
