@@ -38,6 +38,9 @@ class _HomeViewState extends State<HomeView> {
     subTypes: [],
   );
 
+  // 推荐列表
+  List<GoodDetailItem> _recommendList = [];
+
   List<Widget> _getSlivers() {
     return [
       // 轮播图组件
@@ -72,7 +75,7 @@ class _HomeViewState extends State<HomeView> {
       // 设置间距
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       // 商品列表组件
-      Goodslist(),
+      Goodslist(recommendList: _recommendList),
     ];
   }
 
@@ -91,6 +94,8 @@ class _HomeViewState extends State<HomeView> {
     getRecommendList();
     // 获取一站买全数据
     getOneStopList();
+    // 获取推荐列表
+    _getRecommendList();
   }
 
   // 获取轮播图数据
@@ -121,6 +126,30 @@ class _HomeViewState extends State<HomeView> {
   void getOneStopList() async {
     _oneStopResult = await getOneStopListApi();
     setState(() {});
+  }
+
+  //页码
+  int _page = 1;
+  bool _isLoading = false; //当前是否正在加载
+  bool _hasMore = true; //是否还有下一页
+
+  // 获取推荐列表
+  void _getRecommendList() async {
+    //有请求加载或没有下一页时，放弃请求。
+    // if (_isLoading || !_hasMore) {
+    //   return;
+    // }
+    // _isLoading = true; //加锁
+    // int requestLimit = _page * 8;
+    _recommendList = await getGoodsRecommendListAPI({"limit": 2});
+    // _isLoading = false; //放锁
+    setState(() {});
+    // //获取的数据不够时，证明无下一页，所以调整为false
+    // if (_recommendList.length < requestLimit) {
+    //   _hasMore = false;
+    //   return;
+    // }
+    // _page++;
   }
 
   @override

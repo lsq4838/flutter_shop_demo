@@ -17,4 +17,6 @@ class RequestConstants {
   static const String recommendUrl = "/hot/inVogue";
   // 一站买全
   static const String oneStopUrl = "/hot/oneStop";
+  // 推荐列表
+  static const String recommendListUrl = "/home/recommend";
 }
