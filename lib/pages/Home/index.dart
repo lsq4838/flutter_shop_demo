@@ -79,6 +79,9 @@ class _HomeViewState extends State<HomeView> {
     ];
   }
 
+  // 滚动控制器
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -96,6 +99,13 @@ class _HomeViewState extends State<HomeView> {
     getOneStopList();
     // 获取推荐列表
     _getRecommendList();
+    // 监听滚动事件
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels >=
+          _scrollController.position.maxScrollExtent - 60) {
+        _getRecommendList();
+      }
+    });
   }
 
   // 获取轮播图数据
@@ -136,24 +146,27 @@ class _HomeViewState extends State<HomeView> {
   // 获取推荐列表
   void _getRecommendList() async {
     //有请求加载或没有下一页时，放弃请求。
-    // if (_isLoading || !_hasMore) {
-    //   return;
-    // }
-    // _isLoading = true; //加锁
-    // int requestLimit = _page * 8;
-    _recommendList = await getGoodsRecommendListAPI({"limit": 2});
-    // _isLoading = false; //放锁
+    if (_isLoading || !_hasMore) {
+      return;
+    }
+    _isLoading = true; //加锁
+    int requestLimit = _page * 8;
+    _recommendList = await getGoodsRecommendListAPI({"limit": requestLimit});
+    _isLoading = false; //放锁
     setState(() {});
-    // //获取的数据不够时，证明无下一页，所以调整为false
-    // if (_recommendList.length < requestLimit) {
-    //   _hasMore = false;
-    //   return;
-    // }
-    // _page++;
+    //获取的数据不够时，证明无下一页，所以调整为false
+    if (_recommendList.length < requestLimit) {
+      _hasMore = false;
+      return;
+    }
+    _page++;
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(slivers: _getSlivers());
+    return CustomScrollView(
+      controller: _scrollController,
+      slivers: _getSlivers(),
+    );
   }
 }
